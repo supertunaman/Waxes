@@ -1,0 +1,29 @@
+This doesn't scale.
+
+This is essnetially a two-file webapp. blog.cgi is the app itself, and 
+blogposts.rb is your database. post.rb is the script for posting to your blog. 
+
+To deploy, copy blog.cgi and blogposts.rb to your web server directory, and 
+configure your webserver accordingly. Everything you need is in Ruby's 
+standard library.
+
+To make a blog post, create an HTML file similar to this.
+
+<div class="article-title">Chicken Tetrazzini!</div>
+<div class="article-date">DATEME</div>
+<article>
+<p>Kyle love it!</p>
+</article>
+
+DATEME will be replaced with the date of running post.rb You can also specify 
+your own date.
+
+Now run the following command
+
+ruby post.rb blogpost.html >> /path/to/blogposts.rb
+
+post.rb will compress and encode the content and add it to the hash in 
+blogposts.rb with the MD5 digest as the key. The digest is also added to the 
+post_id array.
+
+If you get this to scale, you can have the clown Jim Raynor feature idea notes.
